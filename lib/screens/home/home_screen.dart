@@ -11,11 +11,12 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: ValueListenableBuilder(
-            valueListenable: controller.title,
-            builder: (context, String title, _) => Text(
-                  title,
-                  key: const Key('title'),
-                )),
+          valueListenable: controller.title,
+          builder: (context, String title, _) => Text(
+            title,
+            key: const Key('title'),
+          ),
+        ),
       ),
       body: FractionallySizedBox(
         widthFactor: 1,

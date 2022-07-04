@@ -20,4 +20,23 @@ void main() {
       expect(find.text('5'), findsOneWidget);
     });
   });
+
+  testWidgets('Change Home text', (WidgetTester tester) async {
+    app.main();
+    await tester.pumpAndSettle();
+
+    var title = find.byKey(const Key('title')).evaluate().single.widget as Text;
+    expect(title.data, equals('Home'));
+
+    await tester.tap(find.byKey(const Key('titleInput')));
+    await tester.pump(const Duration(milliseconds: 400));
+    await tester.enterText(find.byKey(const Key('titleInput')), 'Home Page');
+    await tester.pumpAndSettle();
+    await Future.delayed(
+        const Duration(seconds: 2)); //Just to see when Text change
+
+    title = find.byKey(const Key('title')).evaluate().single.widget as Text;
+
+    expect(title.data, equals('Home Page'));
+  });
 }
